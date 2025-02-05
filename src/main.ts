@@ -1,5 +1,6 @@
 import express, { json, urlencoded } from "express";
 import openapi from '@wesleytodd/openapi';
+import { creactGLTFAPI } from "./gltf-api";
 
 const app = express();
 
@@ -25,28 +26,19 @@ app.use(oapi);
 
 app.use('/swaggerui', oapi.swaggerui())
 
-// To add path specific schema you can use the .path middleware
-app.get('/', oapi.path({
+app.get('/gltf', oapi.path({
   responses: {
     200: {
       description: 'Successful response',
       content: {
-        'application/json': {
+        'model/gltf-binary': {
           schema: {
-            type: 'object',
-            properties: {
-              hello: { type: 'string' }
-            }
           }
         }
       }
     }
   }
-}), (req, res) => {
-  res.json({
-    hello: 'world'
-  })
-});
+}), creactGLTFAPI());
 
 const port = process.env.PORT || 8080;
 app.listen(port, () => {

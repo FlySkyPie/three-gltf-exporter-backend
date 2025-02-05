@@ -15,7 +15,9 @@
     "vite-node": "^3.0.5"
   },
   "dependencies": {
+    "3d-core-raub": "^5.1.1",
     "@wesleytodd/openapi": "^1.1.0",
+    "canvas": "^3.1.0",
     "express": "^4.21.2",
     "three": "^0.173.0"
   },
